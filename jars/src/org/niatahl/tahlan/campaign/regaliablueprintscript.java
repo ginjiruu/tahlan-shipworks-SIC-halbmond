@@ -6,7 +6,9 @@ import com.fs.starfarer.api.campaign.CampaignFleetAPI;
 import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.combat.ShipAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.util.IntervalUtil;
+import com.fs.starfarer.api.util.Misc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -189,7 +191,7 @@ public class regaliablueprintscript implements EveryFrameScript {
 
     //Function for getting the player's aptitude in technology (as 0, 1, 2 or 3)
     private int getTechAptitude () {
-        if (Global.getSector().getPlayerStats().getSkillLevel("special_modifications")>0 || Global.getSector().getPlayerStats().getSkillLevel("automated_ships")>0) {
+        if (Global.getSector().getPlayerStats().getSkillLevel("special_modifications")>0 || Misc.getAllowedRecoveryTags().contains(Tags.AUTOMATED_RECOVERABLE)) {
             return 3;
         } else if (Global.getSector().getPlayerStats().getSkillLevel("electronic_warfare")>0 || Global.getSector().getPlayerStats().getSkillLevel("fighter_uplink")>0) {
             return 2;
